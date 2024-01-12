@@ -1,0 +1,4 @@
+[submodule "kernel/irve-nommu"]
+	path = kernel/irve-nommu
+	url = git@github.com:angry-goose-initiative/linux.git
+	branch = irve-nommu
