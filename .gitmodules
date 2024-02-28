@@ -2,3 +2,7 @@
 	path = kernel/irve-nommu
 	url = git@github.com:angry-goose-initiative/linux.git
 	branch = irve-nommu
+[submodule "kernel/irve-mmu"]
+	path = kernel/irve-mmu
+	url = git@github.com:angry-goose-initiative/linux.git
+	branch = irve-mmu
