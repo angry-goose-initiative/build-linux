@@ -6,3 +6,6 @@
 	path = kernel/irve-mmu
 	url = git@github.com:angry-goose-initiative/linux.git
 	branch = irve-mmu
+[submodule "initramfs/busybox"]
+	path = initramfs/busybox
+	url = https://git.busybox.net/busybox
