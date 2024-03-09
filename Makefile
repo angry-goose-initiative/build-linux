@@ -66,7 +66,10 @@ initramfs/busybox/.config: initramfs/busybox-config-default initramfs/busybox/.g
 # Git Submodule Updating
 ####################################################################################################
 
-kernel/irve-mmu/.git:
+# Make the clones not happen at the same time by making them depend on each other, since
+# git locks the .git directory so things will fail if they happen at the same time
+
+kernel/irve-mmu/.git: initramfs/busybox/.git initramfs/irve-inception/.git
 	@echo "\e[1mUpdating kernel/irve-mmu submodule...\e[0m"
 	$(GIT_EXECUTABLE) submodule update --init --depth 1 --recursive kernel/irve-mmu
 
@@ -74,7 +77,7 @@ kernel/irve-nommu/.git:
 	@echo "\e[1mUpdating kernel/irve-nommu submodule...\e[0m"
 	$(GIT_EXECUTABLE) submodule update --init --depth 1 --recursive kernel/irve-nommu
 
-initramfs/busybox/.git:
+initramfs/busybox/.git: initramfs/irve-inception/.git
 	@echo "\e[1mUpdating initramfs/busybox submodule...\e[0m"
 	$(GIT_EXECUTABLE) submodule update --init --depth 1 --recursive initramfs/busybox
 
