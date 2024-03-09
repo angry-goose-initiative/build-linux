@@ -8,4 +8,4 @@
 	branch = irve-mmu
 [submodule "initramfs/busybox"]
 	path = initramfs/busybox
-	url = https://git.busybox.net/busybox
+	url = git@github.com:angry-goose-initiative/busybox.git
