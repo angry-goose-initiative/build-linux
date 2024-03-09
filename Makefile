@@ -34,15 +34,15 @@ initramfs/busybox/busybox: initramfs/busybox/.config initramfs/busybox/.git
 # Config Copying
 ####################################################################################################
 
-kernel/irve-mmu/.config: kernel/config/irve-mmu-default
+kernel/irve-mmu/.config: kernel/config/irve-mmu-default kernel/irve-mmu/.git
 	@echo "\e[1mUsing kernel/config/irve-mmu-default as .config for kernel/irve-mmu...\e[0m"
 	cp kernel/config/irve-mmu-default kernel/irve-mmu/.config
 
-kernel/irve-nommu/.config: kernel/config/irve-nommu-default
+kernel/irve-nommu/.config: kernel/config/irve-nommu-default kernel/irve-nommu/.git
 	@echo "\e[1mUsing kernel/config/irve-nommu-default as .config for kernel/irve-nommu...\e[0m"
 	cp kernel/config/irve-nommu-default kernel/irve-nommu/.config
 
-initramfs/busybox/.config: initramfs/busybox-config-default
+initramfs/busybox/.config: initramfs/busybox-config-default initramfs/busybox/.git
 	@echo "\e[1mUsing initramfs/busybox-config-default as .config for initramfs/busybox...\e[0m"
 	cp initramfs/busybox-config-default initramfs/busybox/.config
 
@@ -60,7 +60,7 @@ kernel/irve-nommu/.git:
 
 initramfs/busybox/.git:
 	@echo "\e[1mUpdating initramfs/busybox submodule...\e[0m"
-	$(GIT_EXECUTABLE) submodule update --init --depth 1 --recursive kernel/irve-mmu
+	$(GIT_EXECUTABLE) submodule update --init --depth 1 --recursive initramfs/busybox
 
 ####################################################################################################
 # Cleanup
