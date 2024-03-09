@@ -13,8 +13,10 @@ to run! Exciting stuff!
 Most common POSIX utilities should be available. Look at
 /bin, /sbin /usr/bin, and /usr/sbin for what's available.
 
-Additionally, you may find the programs in /inception
-interesting :)
+Want to run IRVE, on IRVE? You can! For example, try
+/inception/irve /inception/rvsw/hello_world.elf.
+(Note that all of the programs in /inception/rvsw/hello_world.elf
+are bare metal so you can't run them directly from the shell.)
 
 Whelp, have fun!
 - JZJ

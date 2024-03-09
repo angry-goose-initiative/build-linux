@@ -9,3 +9,6 @@
 [submodule "initramfs/busybox"]
 	path = initramfs/busybox
 	url = git@github.com:angry-goose-initiative/busybox.git
+[submodule "initramfs/irve-inception"]
+	path = initramfs/irve-inception
+	url = git@github.com:angry-goose-initiative/irve.git

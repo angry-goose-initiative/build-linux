@@ -10,7 +10,7 @@ GIT_EXECUTABLE := git
 # Kernel Building
 ####################################################################################################
 
-kernel/irve-mmu/arch/riscv/boot/Image kernel/irve-mmu/vmlinux &: kernel/irve-mmu/.config kernel/irve-mmu/.git initramfs/contents/bin/busybox $(shell find initramfs/contents -type f)
+kernel/irve-mmu/arch/riscv/boot/Image kernel/irve-mmu/vmlinux &: kernel/irve-mmu/.config kernel/irve-mmu/.git initramfs/contents/bin/busybox initramfs/contents/inception/irve $(shell find initramfs/contents -type f)
 	@echo "\e[1mBuilding kernel/irve-mmu...\e[0m"
 	$(MAKE) -C kernel/irve-mmu ARCH=riscv CROSS_COMPILE=riscv32-unknown-linux-gnu- all
 
@@ -29,6 +29,22 @@ initramfs/contents/bin/busybox: initramfs/busybox/busybox
 initramfs/busybox/busybox: initramfs/busybox/.config initramfs/busybox/.git
 	@echo "\e[1mBuilding initramfs/busybox...\e[0m"
 	$(MAKE) -C initramfs/busybox ARCH=riscv CROSS_COMPILE=riscv32-unknown-linux-gnu- all
+
+initramfs/contents/inception/irve: initramfs/irve-inception/build/src/irve
+	@echo "\e[1mCopying initramfs/irve-inception/build/src/irve to initramfs/contents/inception/irve...\e[0m"
+	cp initramfs/irve-inception/build/src/irve initramfs/contents/inception/irve
+	#I'm too lazy to make each of the test programs an individual target
+	@echo "\e[1mCopying test programs...\e[0m"
+	cp initramfs/irve-inception/build/rvsw/rvsw/src/single_file/c/*.elf initramfs/contents/inception/rvsw
+	cp initramfs/irve-inception/build/rvsw/rvsw/src/single_file/cxx/*.elf initramfs/contents/inception/rvsw
+	#Remove this test program since it is pretty large (5MB)
+	rm -f initramfs/contents/inception/rvsw/morevm_smode.elf
+
+
+initramfs/irve-inception/build/src/irve: initramfs/irve-inception/.git
+	@echo "\e[1mBuilding initramfs/irve-inception...\e[0m"
+	cd initramfs/irve-inception && mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -DIRVE_INCEPTION=1 ..
+	$(MAKE) -C initramfs/irve-inception/build
 
 ####################################################################################################
 # Config Copying
@@ -62,6 +78,10 @@ initramfs/busybox/.git:
 	@echo "\e[1mUpdating initramfs/busybox submodule...\e[0m"
 	$(GIT_EXECUTABLE) submodule update --init --depth 1 --recursive initramfs/busybox
 
+initramfs/irve-inception/.git:
+	@echo "\e[1mUpdating initramfs/irve-inception submodule...\e[0m"
+	$(GIT_EXECUTABLE) submodule update --init --depth 1 --recursive initramfs/irve-inception
+
 ####################################################################################################
 # Cleanup
 ####################################################################################################
@@ -76,3 +96,4 @@ clean:
 	$(MAKE) -C initramfs/busybox ARCH=riscv CROSS_COMPILE=riscv32-unknown-linux-gnu- clean
 	rm -f initramfs/busybox/.config
 	rm -f initramfs/contents/bin/busybox
+	rm -rf initramfs/irve-inception/build
