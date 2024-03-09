@@ -1,0 +1,17 @@
+#!/bin/busybox sh
+
+#Install busybox symlinks
+/bin/busybox --install -s
+
+#Mount filesystems
+mount -t devtmpfs  devtmpfs  /dev
+mount -t proc      proc      /proc
+mount -t sysfs     sysfs     /sys
+mount -t tmpfs     tmpfs     /tmp
+
+setsid cttyhack sh -l
+
+echo "Oops, you exited the shell. Since the shell was serving as init the kernel will panic now."
+echo "No worries, just restart and try again! :)"
+
+exit 123

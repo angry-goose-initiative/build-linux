@@ -1,0 +1,17 @@
+There are quite a few interesting files under /dev!
+
+There are several you're likely familiar with, such as /dev/null, /dev/zero, /dev/random, etc.
+
+There are also quite a few teletype files and serial ports.
+
+/dev/ttyS0 corresponds to the serial port that you interact with an is used for both stdin
+and stdout for all programs.
+
+You may also find /dev/hvc0 interesting, as this corresponds to the SBI console.
+
+If you for example do `echo "Hello, World!" > /dev/hvc0` you'll notice that the SBI
+will print the text rather than the UART!
+
+Additionally if you want to write something to the kernel message buffer, you can do
+`echo "Hello, World!" > /dev/kmsg`. In addition to being wrapped in the usual kernel log
+message look, it will be printed to both the SBI console and the UART.

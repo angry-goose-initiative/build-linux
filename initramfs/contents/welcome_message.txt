@@ -1,0 +1,23 @@
+Welcome to JZJ's Initramfs for IRVE and LETC!
+   _      _ _       _ _                        __
+  (_)____(_|_)_ __ (_) |_ _ __ __ _ _ __ ___  / _|___
+  | |_  /| | | '_ \| | __| '__/ _` | '_ ` _ \| |_/ __|
+  | |/ / | | | | | | | |_| | | (_| | | | | | |  _\__ \
+ _/ /___|/ |_|_| |_|_|\__|_|  \__,_|_| |_| |_|_| |___/
+|__/   |__/
+
+If you're seeing this, this means that you've successfully
+booted the Linux kernel and userspace programs have begun
+to run! Exciting stuff!
+
+Most common POSIX utilities should be available. Look at
+/bin and /sbin for what's available.
+
+Additionally, you may find the programs in /inception
+interesting :)
+
+Whelp, have fun!
+- JZJ
+
+P.S. Since this is an initramfs, nothing is persistent, so
+be careful!
