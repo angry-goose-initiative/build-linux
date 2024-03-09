@@ -11,7 +11,7 @@ booted the Linux kernel and userspace programs have begun
 to run! Exciting stuff!
 
 Most common POSIX utilities should be available. Look at
-/bin and /sbin for what's available.
+/bin, /sbin /usr/bin, and /usr/sbin for what's available.
 
 Additionally, you may find the programs in /inception
 interesting :)
