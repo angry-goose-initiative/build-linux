@@ -15,8 +15,8 @@ Most common POSIX utilities should be available. Look at
 
 Want to run IRVE, on IRVE? You can! For example, try
 /inception/irve /inception/rvsw/hello_world.elf.
-(Note that all of the programs in /inception/rvsw/hello_world.elf
-are bare metal so you can't run them directly from the shell.)
+(Note that all of the programs in /inception/rvsw/ are
+bare metal so you can't run them directly from the shell.)
 
 Whelp, have fun!
 - JZJ
